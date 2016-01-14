@@ -8,7 +8,7 @@
 int counter = 0;
 pthread_mutex_t lock;
 
-void* do_something(void *arg)
+void *do_something(void *arg)
 {
     int local_counter = 0;
 
@@ -20,7 +20,8 @@ void* do_something(void *arg)
     int r = rand();
     int sleeping_sec = r % 10;
 
-    printf("Job %d started, sleep sec: %d.\n", local_counter, sleeping_sec);
+    printf("Job %d started, sleep sec: %d.\n", local_counter,
+           sleeping_sec);
     sleep(sleeping_sec);
     printf("Job %d ended.\n", local_counter);
 

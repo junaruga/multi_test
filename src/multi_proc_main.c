@@ -31,7 +31,8 @@ int do_something(int shm_id)
     int r = rand();
     int sleeping_sec = r % 10;
 
-    printf("Job %d started, sleep sec: %d.\n", local_counter, sleeping_sec);
+    printf("Job %d started, sleep sec: %d.\n", local_counter,
+           sleeping_sec);
     sleep(sleeping_sec);
     printf("Job %d ended.\n", local_counter);
 
@@ -53,7 +54,7 @@ int main(int argc, const char **argv)
     /* Shared memory map */
     if ((shm_addr = shmat(shm_id, NULL, 0)) == (void *) -1) {
         printf("Shared memory mapping faild. %d, [%s]\n",
-            errno, strerror(errno));
+               errno, strerror(errno));
         return ERR;
     }
     memset(shm_addr, 0x00, sizeof(int));
@@ -75,13 +76,13 @@ int main(int argc, const char **argv)
             /* Child process start */
             is_parent = FALSE;
             printf("Child process. My pid is %d, my parent's pid is %d.\n",
-                getpid(), getppid());
+                   getpid(), getppid());
             do_something(shm_id);
             /* Child process end */
             break;
         } else {
             printf("Parent process. My pid is %d, my child's pid is %d.\n",
-                getpid(), pid);
+                   getpid(), pid);
             child_pids[i] = pid;
         }
     }
@@ -92,7 +93,8 @@ int main(int argc, const char **argv)
         pid_t returned_pid = 0;
         for (i = 0; i < PROC_MAX; i++) {
             child_pid = child_pids[i];
-            if ((returned_pid = waitpid(child_pid, &child_pid_status, 0)) < 0) {
+            if ((returned_pid =
+                 waitpid(child_pid, &child_pid_status, 0)) < 0) {
                 printf("waitpid failed.\n");
                 return ERR;
             }
