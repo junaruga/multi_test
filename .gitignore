@@ -3,7 +3,7 @@
 ._*
 # vi
 *.swp
-# Emacs
+# Emacs or GNU indent
 *~
 # Hidemaru
 *.BAK
