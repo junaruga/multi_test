@@ -44,7 +44,6 @@ int main(int argc, const char **argv)
         if (err != 0) {
             printf("Can't create thread : [%s]", strerror(err));
         }
-        /* pthread_join(thread_id[i], NULL); */
     }
     for (i = 0; i < THREAD_MAX; i++) {
         pthread_join(thread_id[i], NULL);
