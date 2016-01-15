@@ -1,5 +1,10 @@
 CC = gcc
-CFLAGS = -Wall
+
+# Production
+# CFLAGS = -Wall -O2
+# Development
+CFLAGS = -Wall -g -O0
+
 RM = rm -f
 TOP = ..
 BIN_DIR = $(TOP)/bin
