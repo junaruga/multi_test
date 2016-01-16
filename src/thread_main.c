@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#define SLEEPING_MAX_SEC 9
+
 int counter = 0;
 pthread_mutex_t lock;
 
@@ -18,7 +20,7 @@ void *do_something(void *arg)
     pthread_mutex_unlock(&lock);
 
     int r = rand();
-    int sleeping_sec = r % 10;
+    int sleeping_sec = r % (SLEEPING_MAX_SEC + 1);
 
     printf("Job %d started, sleep sec: %d.\n", local_counter,
            sleeping_sec);
@@ -34,11 +36,13 @@ int main(int argc, const char **argv)
     int i = 0;
     pthread_t thread_id[THREAD_MAX];
 
+    memset(&lock, 0x00, sizeof(pthread_mutex_t));
     if (pthread_mutex_init(&lock, NULL) != 0) {
         printf("Mutex init faild.");
         return EXIT_FAILURE;
     }
 
+    memset(thread_id, 0x00, sizeof(pthread_t) * THREAD_MAX);
     for (i = 0; i < THREAD_MAX; i++) {
         err = pthread_create(&(thread_id[i]), NULL, &do_something, NULL);
         if (err != 0) {
