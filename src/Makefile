@@ -36,4 +36,4 @@ clean:
 
 .PHONY: format
 format:
-	find . -name "*.c" -o -name "*.h" | xargs gindent -kr -nut
+	find . -name "*.c" -o -name "*.h" | xargs gindent -kr -nut -il0
