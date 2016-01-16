@@ -90,12 +90,12 @@ int main(int argc, const char **argv)
                    getpid(), pid);
             child_pids[i] = pid;
         } else if (pid == -1) {
-            printf("Parent process. My pid is %d. Have an error.\n", getpid());
+            printf("Parent process. My pid is %d. Have an error.\n",
+                   getpid());
             status = ERR;
             goto end;
         } else {
-            printf("Fork faild. %d, [%s]\n",
-                   errno, strerror(errno));
+            printf("Fork faild. %d, [%s]\n", errno, strerror(errno));
             status = ERR;
             goto end;
         }
