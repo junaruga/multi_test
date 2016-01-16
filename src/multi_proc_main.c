@@ -49,7 +49,8 @@ int main(int argc, const char **argv)
     pid_t pid;
     int status = OK;
 
-    if ((shm_id = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0660)) <= 0) {
+    if ((shm_id =
+         shmget(IPC_PRIVATE, sizeof(shm_id), IPC_CREAT | 0660)) <= 0) {
         printf("Shared memory get faild.\n");
         return EXIT_FAILURE;
     }
@@ -62,7 +63,6 @@ int main(int argc, const char **argv)
         status = ERR;
         goto end;
     }
-    memset(shm_addr, 0x00, sizeof(int));
     /* Shared memory unmap */
     if (shmdt(shm_addr) < 0) {
         printf("Shared memory unmapping faild.\n");
