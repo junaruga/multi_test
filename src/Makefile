@@ -1,9 +1,9 @@
 CC = gcc
 
 # Production
-# CFLAGS = -Wall -O2
+# CFLAGS = -Werror -O2
 # Development
-CFLAGS = -Wall -g -O0
+CFLAGS = -Werror -g -O0
 
 RM = rm -f
 TOP = ..
